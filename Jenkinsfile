@@ -1,20 +1,10 @@
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      parallel {
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
         stage('build') {
-          steps {
-            bat 'mvn clean deploy'
-          }
+            steps {
+                sh 'mvn --version'
+            }
         }
-        stage('parallel') {
-          steps {
-            echo 'parallel'
-            echo 'parallel'
-          }
-        }
-      }
     }
-  }
 }
